@@ -46,9 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 def check_tokens():
-    """
-    Проверяет наличие необходимых для работы программы токенов
-    """
+    """Проверяет наличие необходимых для работы программы токенов."""
     tokens_bool = True
     for token in (PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID):
         if token is None:
@@ -60,8 +58,8 @@ def check_tokens():
 
 def get_api_answer(timestamp):
     """
-    Делает запрос к API Яндекс.Домашки,
-    возвращает ответ сервера в формате Python
+    Делает запрос к API Яндекс.Домашки.
+    Принимает данные для запроса, возвращает ответ сервера в формате Python.
     """
     try:
         response = requests.get(ENDPOINT, headers=HEADERS, params=timestamp)
@@ -81,8 +79,9 @@ def get_api_answer(timestamp):
 
 def check_response(response):
     """
-    Проверяет ответ API на соответствие документации,
-    возвращает список домашних работ, полученных из запроса
+    Проверяет ответ API на соответствие документации.
+    Принимает ответ сервера,
+    возвращает список домашних работ, полученных из запроса.
     """
     if not isinstance(response, dict):
         logger.error('Ответ не является словарем')
@@ -103,8 +102,9 @@ def check_response(response):
 
 def parse_status(homework):
     """
-    Извлекает информацию о статусе домашней работы,
-    возвращает строку со статусом
+    Извлекает информацию о статусе домашней работы.
+    Принимает последнюю работу, получившую статус,
+    возвращает строку со статусом проверки работы.
     """
     status = homework.get('status')
     homework_name = homework.get('homework_name')
@@ -128,7 +128,8 @@ def parse_status(homework):
 
 def send_message(bot, message):
     """
-    Отправляет сообщение с результатом пользователю
+    Отправляет сообщение с результатом пользователю.
+    Принимает объект бота и текст сообщения.
     """
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
@@ -144,7 +145,7 @@ def main():
     if not check_tokens():
         sys.exit('Отсутствует токен!')
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    timestamp = 0  # предлож вариант: int(time.time())
+    timestamp = int(time.time())
     while True:
         try:
             payload = {'from_date': timestamp}
