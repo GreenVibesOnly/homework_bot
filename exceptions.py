@@ -3,11 +3,16 @@ class RequestExceptionError(Exception):
     pass
 
 
-class UndocumentedStatusError(Exception):
+class EmptyResponseError(Exception):
     """Недокументированный статус."""
     pass
 
 
-class EmptyResponseError(Exception):
+class ResponceTypeError(TypeError):
+    """Ошибка типа ответа сервера."""
+    pass
+
+
+class UndocumentedStatusError(Exception):
     """Недокументированный статус."""
     pass
