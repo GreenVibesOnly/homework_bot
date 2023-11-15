@@ -136,6 +136,7 @@ def main():
         try:
             payload = {'from_date': timestamp}
             response = get_api_answer(payload)
+            timestamp = response.get('current_date')
             homeworks = check_response(response)
             if homeworks:
                 message = parse_status(homeworks[0])
@@ -163,7 +164,6 @@ def main():
                     f'Новых статусов нет, последнее обновление: {message}'
                 )
         finally:
-            timestamp = response.get('current_date')
             time.sleep(RETRY_PERIOD)
 
 

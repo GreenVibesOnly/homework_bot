@@ -4,12 +4,12 @@ class RequestExceptionError(Exception):
 
 
 class EmptyResponseError(Exception):
-    """Недокументированный статус."""
+    """В запросе нет необходимых ключей."""
     pass
 
 
 class ResponceTypeError(TypeError):
-    """Ошибка типа ответа сервера."""
+    """Неверный тип ответа."""
     pass
 
 
