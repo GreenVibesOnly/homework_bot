@@ -18,9 +18,9 @@
 Бот покрыт тестами по всем функциям.
 
 ## Технологии
-Python
-python-telegram-bot
-Pytest
+- Python
+- python-telegram-bot
+- Pytest
 
 
 ## Установка и запуск
